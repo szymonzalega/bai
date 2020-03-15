@@ -4,12 +4,13 @@
 <head>
     <title>Shopping List</title>
     <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
     <h1>Shopping List</h1>
     <p>
-        New item: <input type="text" name="item">
+        New item: <input id="item" type="text" name="item">
         <button type="button">Add</button>
     </p>
     <h3>List of items</h3>
@@ -20,8 +21,25 @@
     </ol>
 
     <script>
-    	// a JavaScript code here ...
+        $(document).ready(function () {
+            let input = document.querySelector('#item');
+            let button = document.querySelector('button');
+            let list = document.querySelector('ol');
+            // let listItems = document.querySelectorAll('li');
 
+            $(button).click(event => {
+                let value = input.value;
+                let newItemElem = document.createElement("li");
+                newItemElem.appendChild(document.createTextNode(value))
+                list.appendChild(newItemElem);
+                input.value = "";
+            })
+
+            $(list).dblclick(event => {
+                console.log(event);
+                event.target.remove();
+            })
+        });
     </script>
 </body>
 

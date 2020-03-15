@@ -1,27 +1,63 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Pink Floyd</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<h1>Another Brick in the Wall</h1>
-		<h3>Pink Floyd</h3>
-		<p>We don't need no education<br>
+
+<head>
+	<title>Pink Floyd</title>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<h1>Another Brick in the Wall</h1>
+	<h3>Pink Floyd</h3>
+	<p oncopy="alert('Pamiętaj o prawach autorskich!')">We don't need no education<br>
 		We don't need no thought control<br>
 		No dark sarcasm in the classroom<br>
 		Teachers leave them kids alone<br>
 		Hey! Teachers! Leave them kids alone<br>
 		All in all it's just another brick in the wall<br>
 		All in all you're just another brick in the wall</p>
-		
-		<p style="visibility: hidden;">Pink Floyd were an English rock band formed in London.<br>
+
+	<p style="visibility: hidden;">Pink Floyd were an English rock band formed in London.<br>
 		They achieved international acclaim with their progressive<br>
 		and psychedelic music.</p>
-		
-		<script>
-			// a JavaScript code here ...
-			
-		</script>
-	</body>
+
+	<div id="picture"></div>
+
+	<script>
+		(() => {
+			let body = document.querySelector('body');
+			let title = document.querySelector('h1');
+			let bandNameElem = document.querySelector('h3');
+			let lyricsElem = document.querySelectorAll('p')[0];
+			let descriptionElem = document.querySelectorAll('p')[1];
+			let picture = document.querySelector('#picture');
+
+			title.addEventListener('click', event => {
+				event.target.innerText += " Part 2";
+			})
+
+			bandNameElem.addEventListener('click', event => {
+				descriptionElem.style.visibility = "initial";
+			})
+
+			lyricsElem.addEventListener('click', event => {
+				event.target.style.fontStyle = "italic";
+			})
+
+			document.addEventListener('dblclick', event => {
+				event.target.style.backgroundColor = "yellow";
+			})
+
+			descriptionElem.addEventListener('click', event => {
+				if (!document.querySelector('img')) {
+					let img = document.createElement("img");
+					img.setAttribute("src", "https://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg");
+					picture.appendChild(img);
+				}
+
+			})
+		})();
+	</script>
+</body>
+
 </html>

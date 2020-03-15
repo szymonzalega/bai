@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Typing test</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<h1>How fast are your fingers?</h1>
-		<h3>You have 30 seconds. Just start typing...</h3>
-		<p>Nam strzelać nie kazano. - Wstąpiłem na działo<br>
+
+<head>
+	<title>Typing test</title>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<h1>How fast are your fingers?</h1>
+	<h3>You have 30 seconds. Just start typing...</h3>
+	<p>Nam strzelać nie kazano. - Wstąpiłem na działo<br>
 		I spójrzałem na pole; dwieście armat grzmiało.<br>
 		Artyleryi ruskiej ciągną się szeregi,<br>
 		Prosto, długo, daleko, jako morza brzegi;<br>
@@ -19,13 +21,39 @@
 		Czarne chorągwie na śmierć prowadzą zastępy.<br>
 		Przeciw nim sterczy biała, wąska, zaostrzona,<br>
 		Jak głaz bodzący morze, reduta Ordona.</p>
-		
-		<textarea rows="15" cols="50"></textarea><br>
-		
-		<script>
-			// a JavaScript code here ...
-			
-		</script>
-		
-	</body>
+
+	<textarea rows="15" cols="50"></textarea><br>
+
+	<script>
+		(() => {
+			let textarea = document.querySelector('textarea');
+			let body = document.querySelector('body');
+			let wasClicked = false;
+
+			const calculateResult = (text) => {
+				let wordsAmount = text.split(' ').length;
+				let charsAmount = text.length;
+
+				let resultsText = `W czasie 30 sekund napisałeś ${wordsAmount} słów, w tym ${charsAmount} znaków`;
+				let resultsElem = document.createElement("p");
+				resultsElem.appendChild(document.createTextNode(resultsText))
+				body.appendChild(resultsElem);
+			}
+
+			textarea.addEventListener('keyup', event => {
+				if (!wasClicked) {
+					wasClicked = true;
+					setTimeout(() => {
+						calculateResult(textarea.value);
+						wasClicked = false;
+						textarea.value = "";
+						textarea.disabled = true
+					}, 30000)
+				}
+			})
+		})();
+	</script>
+
+</body>
+
 </html>

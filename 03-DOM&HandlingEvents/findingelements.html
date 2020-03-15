@@ -11,8 +11,21 @@
     <p>Find elements by tag name</p>
 
     <script>
-        // a JavaScript code here ...
+        (function () {
+            console
+            const h1 = document.querySelector('h1').innerHTML;
+            const someText = document.querySelector('#someTest').innerHTML;
+            const important = document.querySelector('.important').innerHTML;
+            const pElements = document.querySelectorAll('p');
 
+            console.log(`h1: ${h1}`);
+            console.log(`id=someText: ${someText}`);
+            console.log(`class=important: ${important}`);
+
+            for (elem of pElements) {
+                console.log(`Elem p: ${elem.innerHTML}`)
+            }
+        })();
     </script>
 </body>
 
